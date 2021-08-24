@@ -24,3 +24,12 @@ function command_exists() {
         fi
     done
 }
+
+: "set up framework" && {
+    FRAMEWORK="oh-my-zsh"
+    if ! [ "${ZSH}" = "${HOME}/.${FRAMEWORK}" ]; then
+      ./ohmyzsh/tools/install.sh | ZSH=~/dotfiles/oh-my-zsh sh
+    else
+      echo "${FRAMEWORK} is already installed"
+    fi
+ }
