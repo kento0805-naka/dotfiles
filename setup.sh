@@ -14,7 +14,7 @@ function command_exists() {
 }
 
 : "install packages by brew" && {
-    PACKAGES=( jq pstree git ansible openssl awscli tree ecspresso )
+    PACKAGES=( jq pstree git ansible openssl awscli tree )
     for package in ${PACKAGES[@]}; do
         if ! brew list | grep $package &> /dev/null; then
             echo "installing ${package}"
@@ -27,7 +27,7 @@ function command_exists() {
 
 : "set up framework" && {
     FRAMEWORK="oh-my-zsh"
-    if ! [ "${ZSH}" = "${HOME}/.${FRAMEWORK}" ]; then
+    if ! [ -n $ZSH ]; then
       ./ohmyzsh/tools/install.sh | ZSH=~/dotfiles/oh-my-zsh sh
     else
       echo "${FRAMEWORK} is already installed"
